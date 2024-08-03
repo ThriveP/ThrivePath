@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-4">
+        <h1>Job Listings</h1>
+    </header>
+    <div class="container mt-4">
+        <ul class="list-group">
+            {% for job in job_listings %}
+                <li class="list-group-item">
+                    <h5>{{ job.title }} - {{ job.company }}</h5>
+                    <p><strong>Location:</strong> {{ job.location }}</p>
+                    <p>{{ job.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
+
+

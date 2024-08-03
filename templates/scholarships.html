@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarships</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-4">
+        <h1>Scholarships</h1>
+    </header>
+    <div class="container mt-4">
+        <form method="get" action="{{ url_for('search_scholarships') }}">
+            <div class="form-group">
+                <input type="text" name="query" class="form-control" placeholder="Search scholarships" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <div class="mt-4">
+            {% if scholarships %}
+                <ul class="list-group">
+                    {% for scholarship in scholarships %}
+                        <li class="list-group-item">
+                            <h5>{{ scholarship.name }}</h5>
+                            <p>{{ scholarship.description }}</p>
+                            <p><strong>Deadline:</strong> {{ scholarship.deadline }}</p>
+                            <p><strong>Eligibility:</strong> {{ scholarship.eligibility }}</p>
+                            <p><a href="{{ scholarship.link }}" target="_blank">More Info</a></p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No scholarships found.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Career Opportunities</h2>
+<p>Explore job recommendations, internships, and resume-building tools.</p>
+
+<section id="job-listings">
+    <h3>Job Listings</h3>
+    <ul>
+        {% for job in job_listings %}
+            <li>
+                <h4>{{ job.title }}</h4>
+                <p><strong>Company:</strong> {{ job.company }}</p>
+                <p><strong>Location:</strong> {{ job.location }}</p>
+                <p><strong>Description:</strong> {{ job.description }}</p>
+            </li>
+        {% else %}
+            <li>No job listings available at the moment.</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section id="internships">
+    <h3>Internships</h3>
+    <p>No internships available at the moment.</p>
+</section>
+
+<section id="resume-tools">
+    <h3>Resume-Building Tools</h3>
+    <ul>
+        <li><a href="https://www.canva.com/create/resumes/" class="btn btn-primary" target="_blank">Canva Resume Builder</a></li>
+        <li><a href="https://www.resume.com/" class="btn btn-primary" target="_blank">Resume.com</a></li>
+        <li><a href="https://www.zety.com/resume-builder" class="btn btn-primary" target="_blank">Z
+
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThrivePath - Budgeting Tool</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-4">
+        <h1>ThrivePath - Budgeting Tool</h1>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('index') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('financial') }}">Financial Planning</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('job_listings') }}">Job Listings</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('user_profile') }}">User Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container mt-4">
+        <!-- Forms and Content Here -->
+        <!-- Form for Adding Income -->
+        <div class="card mb-4">
+            <div class="card-header bg-danger text-white">
+                <h5 class="card-title">Add Income</h5>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('add_income') }}" method="post">
+                    <div class="form-group">
+                        <label for="amount">Amount:</label>
+                        <input type="number" id="amount" name="amount" class="form-control" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <input type="text" id="description" name="description" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-danger">Add Income</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Form for Adding Expense -->
+        <div class="card mb-4">
+            <div class="card-header bg-danger text-white">
+                <h5 class="card-title">Add Expense</h5>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('add_expense') }}" method="post">
+                    <div class="form-group">
+                        <label for="amount">Amount:</label>
+                        <input type="number" id="amount" name="amount" class="form-control" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <input type="text" id="description" name="description" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="category_id">Category:</label>
+                        <select id="category_id" name="category_id" class="form-control">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Add Expense</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Display Spending Insights (Placeholder) -->
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h5 class="card-title">Spending Insights</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="spendingChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Example of Chart.js setup
+        var ctx = document.getElementById('spendingChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Category 1', 'Category 2'],
+                datasets: [{
+                    label: 'Spending Insights',
+                    data: [100, 200],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
